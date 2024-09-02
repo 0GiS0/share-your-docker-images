@@ -22,8 +22,17 @@ jobs:
     with:
         dockerfile_path: tour-of-heroes-angular/Dockerfile.gh-copilot        
 
+  analyze_image:
+    permissions:
+        contents: read
+        security-events: write    
+    uses: 0GiS0/scan-docker-vulnerabilities/.github/workflows/trivy.yaml@main
+    with:
+        image_name: ${{ env.IMAGE_NAME }}
+        dockerfile_path: tour-of-heroes-angular/Dockerfile.gh-copilot
+
   build-and-push-image:
-    needs: analyze_dockerfile
+    needs: [analyze_dockerfile, analyze_image]
     runs-on: ubuntu-latest
     # Sets the permissions granted to the `GITHUB_TOKEN` for the actions in this job.
     permissions:
