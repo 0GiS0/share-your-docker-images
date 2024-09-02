@@ -23,6 +23,7 @@ jobs:
         dockerfile_path: tour-of-heroes-angular/Dockerfile.gh-copilot        
 
   build-and-push-image:
+    needs: analyze_dockerfile
     runs-on: ubuntu-latest
     # Sets the permissions granted to the `GITHUB_TOKEN` for the actions in this job.
     permissions:
