@@ -14,17 +14,13 @@ env:
 
 # There is a single job in this workflow. It's configured to run on the latest available version of Ubuntu.
 jobs:
-  analyze_image:
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout repository
-        uses:
-          actions/checkout@v4
-      - name: Analyze image
-        uses: 0GiS0/scan-docker-vulnerabilities/.github/workflows/checkov.yaml@main
-        with:
-            dockerfile_path: tour-of-heroes-angular/Dockerfile.gh-copilot        
+  analyze_dockerfile:
+    permissions:
+        contents: read
+        security-events: write
+    uses: 0GiS0/scan-docker-vulnerabilities/.github/workflows/checkov.yaml@main
+    with:
+        dockerfile_path: tour-of-heroes-angular/Dockerfile.gh-copilot        
 
   build-and-push-image:
     runs-on: ubuntu-latest
