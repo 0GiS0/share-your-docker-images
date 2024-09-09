@@ -1,5 +1,9 @@
 FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS base
 
+# LABEL org.opencontainers.image.source=https://github.com/0GiS0/share-your-docker-images
+# LABEL org.opencontainers.image.description="My container image"
+# LABEL org.opencontainers.image.licenses=MIT
+
 WORKDIR /app
 
 EXPOSE 5000
